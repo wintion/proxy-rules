@@ -1,9 +1,0 @@
-proxies:
-  - name: My-Trojan
-    type: trojan
-    server: example.com
-    port: 443
-    password: change-me
-    sni:
-    skip-cert-verify: false
-    udp: true

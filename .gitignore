@@ -17,8 +17,6 @@ trojan/ruleset/
 ios/private.yaml
 ios/*.local.yaml
 ios/*.private.yaml
-ios/*.stoverride
-!ios/*.example.stoverride
 
 # Runtime-downloaded iOS rule providers.
 ios/ruleset/

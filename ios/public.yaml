@@ -1,12 +1,20 @@
 # Public Stash profile for iPhone and iPad.
-# Keep proxy credentials out of this file. Add personal nodes with a private
-# Stash override URL.
+# Subscribe once, then replace the example proxy node inside Stash.
+# Do not commit real proxy credentials to GitHub.
 
 mode: rule
 log-level: info
 ipv6: false
 
-proxies: []
+proxies:
+  - name: My-Trojan
+    type: trojan
+    server: example.com
+    port: 443
+    password: change-me
+    sni:
+    skip-cert-verify: false
+    udp: true
 
 proxy-groups:
   - name: Auto

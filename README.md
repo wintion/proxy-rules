@@ -7,7 +7,7 @@
 | 设备 | 推荐客户端 | 配置方式 |
 | --- | --- | --- |
 | 电脑，macOS / Windows | Clash Verge Rev | 订阅公开配置 `trojan/public.yaml`，本机放节点文件 |
-| 手机，iPhone / iPad | Stash | 订阅公开配置 `ios/public.yaml`，再导入私有节点 override URL |
+| 手机，iPhone / iPad | Stash | 订阅公开配置 `ios/public.yaml`，在 App 里修改示例节点 |
 
 规则文件可以公开放在 GitHub。节点地址、密码、订阅 token 不会写到 GitHub
 里。
@@ -17,7 +17,8 @@
 1. 订阅这个公共规则链接。
 2. 把自己的节点信息放到本机。
 
-手机端使用时先订阅公开配置，再导入维护者私下给的节点 override URL。
+手机端使用时订阅公开配置，再把示例节点改成真实节点。以后只更新远程规则
+集，不刷新主配置。
 
 ## 电脑端：Clash Verge Rev
 
@@ -228,12 +229,14 @@ https://www.google.com
 
 手机端推荐使用 Stash。
 
-手机端需要导入两个链接：
+手机端只订阅一个公共配置。公共配置里有一个示例节点，订阅后把这个示例节点
+改成维护者私下告诉你的真实节点。
 
-1. 公共规则配置链接：所有人共用，可以公开。
-2. 私有节点 override 链接：每个人自己的节点，只能私下发送。
+以后维护规则时，只更新 `ios/rules/*.yaml`。这些规则通过 Stash 的
+`rule-providers` 自动刷新，不需要刷新 `ios/public.yaml` 主配置。
 
-这样公共配置可以随时刷新，节点不会被覆盖。
+注意：不要手动刷新 Stash 里的 `Proxy Rules iOS` 主配置，否则示例节点可能
+覆盖你已经改好的真实节点。
 
 ### 一、下载安装 Stash
 
@@ -273,20 +276,25 @@ Proxy Rules iOS
 https://raw.githubusercontent.com/wintion/proxy-rules/refs/heads/main/ios/public.yaml
 ```
 
-### 三、导入私有节点 Override
+### 三、修改示例节点
 
-向维护者索取你的私有节点 override 链接。这个链接通常是一个以
-`.stoverride` 结尾的 HTTPS 地址。
+公共配置导入后，里面会有一个示例节点：
 
-打开 Stash：
+```text
+My-Trojan
+```
 
-1. 进入 `Override` 或 `覆写` 页面。
-2. 点击 `+`。
-3. 选择从 URL 下载 override。
-4. 粘贴维护者私下发给你的节点 override 链接。
-5. 保存，并确认这个 override 已经开启。
+把这个节点改成维护者私下告诉你的真实节点信息：
 
-不要把这个私有链接发到群里，也不要上传到 GitHub。
+| 字段 | 填什么 |
+| --- | --- |
+| `name` | 节点名字，可以不改 |
+| `server` | 服务器地址 |
+| `port` | 端口 |
+| `password` | 密码 |
+| `sni` | 如果维护者没特别说明，就留空 |
+
+不要把真实节点信息发到群里，也不要上传到 GitHub。
 
 ### 四、选择节点
 
@@ -302,8 +310,8 @@ https://raw.githubusercontent.com/wintion/proxy-rules/refs/heads/main/ios/public
 
 一般只需要把 `Proxy` 设置成 `Auto`。
 
-如果 `Proxy` 里看不到任何节点，通常是第三步的私有节点 override 没导入、
-没开启，或者私有链接无法访问。
+如果 `Proxy` 里只有示例节点，或者测试不通，通常是第三步还没有把示例节点
+改成真实节点。
 
 ### 五、开启 VPN
 
@@ -326,7 +334,7 @@ https://www.google.com
 
 1. Stash 是否已经开启连接。
 2. 当前 profile 是否选中了 `Proxy Rules iOS`。
-3. 私有节点 override 是否已经导入并开启。
+3. `My-Trojan` 是否已经改成真实节点。
 4. `Proxy` 分组里是否有节点，并且不是 `DIRECT`。
 5. 手机是否正在使用一个能正常联网的 Wi-Fi 或蜂窝网络。
 
@@ -334,11 +342,14 @@ https://www.google.com
 
 维护者更新 GitHub 规则后，你不需要重新填写节点。
 
-Stash 会按照配置里的间隔刷新远程规则。你也可以刷新 `Proxy Rules iOS`
-主配置；节点来自单独的 override，不会被主配置覆盖。
+Stash 会按照配置里的 `interval` 刷新远程规则集，也就是
+`ios/rules/custom-direct.yaml` 和 `ios/rules/custom-proxy.yaml`。
 
-如果维护者更换了你的节点密码或服务器地址，会更新你的私有节点 override。
-你只需要刷新这个 override，或者重新导入维护者给你的私有链接。
+不要手动刷新 `Proxy Rules iOS` 主配置；如果刷新了，节点可能会恢复成示例
+值，需要重新填写一次。
+
+如果维护者更换了你的节点密码或服务器地址，会私下告诉你新的节点信息。你
+只需要回到 Stash 里修改 `My-Trojan` 节点。
 
 ## 给维护者
 
@@ -353,27 +364,11 @@ Stash 会按照配置里的间隔刷新远程规则。你也可以刷新 `Proxy 
 
 | 文件 | 用途 |
 | --- | --- |
-| `ios/public.yaml` | 手机端 Stash 公共订阅配置，不放真实节点 |
-| `ios/personal-node.example.stoverride` | 手机端私有节点 override 示例 |
+| `ios/public.yaml` | 手机端 Stash 公共订阅配置，只放示例节点 |
 | `ios/rules/custom-direct.yaml` | 手机端强制直连的域名 |
 | `ios/rules/custom-proxy.yaml` | 手机端强制代理的域名 |
 
-不要把真实手机端节点写进 `ios/public.yaml`。真实节点应该放在私有
-`.stoverride` 文件里，并通过私有 HTTPS 链接给对方导入。
-
-手机端私有节点 override 格式：
-
-```yaml
-proxies:
-  - name: My-Trojan
-    type: trojan
-    server: example.com
-    port: 443
-    password: change-me
-    sni:
-    skip-cert-verify: false
-    udp: true
-```
+不要把真实手机端节点写进 `ios/public.yaml`，只保留示例节点。
 
 规则文件格式：
 
@@ -392,5 +387,5 @@ payload:
 基础 YAML 校验：
 
 ```sh
-ruby -e 'require "yaml"; Dir["trojan/public.yaml", "ios/public.yaml", "ios/*.example.stoverride", "trojan/rules/*.yaml", "ios/rules/*.yaml"].each { |f| YAML.load_file(f); puts "OK #{f}" }'
+ruby -e 'require "yaml"; Dir["trojan/public.yaml", "ios/public.yaml", "trojan/rules/*.yaml", "ios/rules/*.yaml"].each { |f| YAML.load_file(f); puts "OK #{f}" }'
 ```
