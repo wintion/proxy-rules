@@ -30,9 +30,9 @@
 proxies:
   - name: My-Trojan
     type: trojan
-    server: example.com
+    server: 更改这里
     port: 443
-    password: change-me
+    password: 更改这里
     sni:
     skip-cert-verify: false
     udp: true
