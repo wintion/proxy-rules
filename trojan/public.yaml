@@ -86,7 +86,7 @@ rule-providers:
   custom-direct:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/wintion/proxy-rules/main/trojan/rules/custom-direct.yaml"
+    url: "https://cdn.jsdelivr.net/gh/wintion/proxy-rules@main/trojan/rules/custom-direct.yaml"
     path: ./ruleset/custom-direct.yaml
     interval: 21600
     proxy: Proxy
@@ -94,7 +94,7 @@ rule-providers:
   custom-proxy:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/wintion/proxy-rules/main/trojan/rules/custom-proxy.yaml"
+    url: "https://cdn.jsdelivr.net/gh/wintion/proxy-rules@main/trojan/rules/custom-proxy.yaml"
     path: ./ruleset/custom-proxy.yaml
     interval: 21600
     proxy: Proxy
