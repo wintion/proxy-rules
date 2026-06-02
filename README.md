@@ -30,7 +30,7 @@ proxies:
     server: example.com
     port: 443
     password: change-me
-    sni: example.com
+    sni:
     skip-cert-verify: false
     udp: true
 ```
@@ -255,7 +255,7 @@ proxies:
     server: example.com
     port: 443
     password: change-me
-    sni: example.com
+    sni:
     skip-cert-verify: false
     udp: true
 ```
