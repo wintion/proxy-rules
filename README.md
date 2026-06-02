@@ -242,13 +242,10 @@ Stash 是付费 App。安装完成后先打开一次。
 
 ### 二、准备节点 Override
 
-手机端不要把节点写进 GitHub。维护者会私下发给你一份 Stash override，
-通常长这样：
+手机端不要把节点写进 GitHub。维护者会私下发给你一份 Stash override。
+节点文件只需要从 `proxies:` 开始，通常长这样：
 
 ```yaml
-name: Personal Nodes
-desc: Add private nodes to the public Stash profile.
-
 proxies:
   - name: My-Trojan
     type: trojan

@@ -1,6 +1,3 @@
-name: Personal Nodes
-desc: Add private nodes to the public Stash profile.
-
 proxies:
   - name: My-Trojan
     type: trojan
