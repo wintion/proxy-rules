@@ -1,0 +1,48 @@
+payload:
+  # AI services
+  - '+.openai.com'
+  - '+.chatgpt.com'
+  - '+.oaiusercontent.com'
+  - '+.oaistatic.com'
+  - '+.anthropic.com'
+  - '+.claude.ai'
+  - '+.openrouter.ai'
+  - '+.huggingface.co'
+  - '+.hf.co'
+  - '+.replicate.com'
+  - '+.perplexity.ai'
+  - '+.poe.com'
+  - '+.cursor.sh'
+
+  # GitHub
+  - '+.github.com'
+  - '+.githubusercontent.com'
+  - '+.githubassets.com'
+
+  # Google / Gemini
+  - 'gemini.google.com'
+  - 'ai.google.dev'
+  - '+.generativelanguage.googleapis.com'
+  - '+.cloudcode.googleapis.com'
+  - '+.cloudcode-pa.googleapis.com'
+  - 'www.googletagmanager.com'
+  - 'www.google-analytics.com'
+
+  # Development
+  - '+.npmjs.org'
+  - '+.nodejs.org'
+  - '+.pypi.org'
+  - '+.files.pythonhosted.org'
+  - '+.docker.com'
+  - '+.docker.io'
+  - '+.ghcr.io'
+  - '+.cloudflare.com'
+  - '+.cloudflareinsights.com'
+  - 'static.cloudflareinsights.com'
+  - '+.posthog.com'
+  - '+.stripe.com'
+  - '+.aiastro.net'
+  - '+.nearfar.ai'
+
+  # Other
+  - 'rmdown.com'

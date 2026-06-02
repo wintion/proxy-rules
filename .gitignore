@@ -1,0 +1,14 @@
+.DS_Store
+
+# Real local profiles with private proxy credentials.
+trojan/pc.yaml
+trojan/ios.yaml
+trojan/*.local.yaml
+trojan/*.private.yaml
+
+# Local proxy-provider files contain private nodes. Keep examples public.
+trojan/proxy_providers/*.yaml
+!trojan/proxy_providers/*.example.yaml
+
+# Runtime-downloaded rule providers.
+trojan/ruleset/
