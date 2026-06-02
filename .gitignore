@@ -13,7 +13,8 @@ trojan/proxy_providers/*.yaml
 # Runtime-downloaded rule providers.
 trojan/ruleset/
 
-# Real Stash profile/override files can contain private proxy credentials.
+# Real local Stash files can contain private proxy credentials.
+ios/private.yaml
 ios/stash-private.yaml
 ios/*.local.yaml
 ios/*.private.yaml

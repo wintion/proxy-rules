@@ -7,7 +7,7 @@
 | 设备 | 推荐客户端 | 配置方式 |
 | --- | --- | --- |
 | 电脑，macOS / Windows | Clash Verge Rev | 订阅公开配置 `trojan/public.yaml`，本机放节点文件 |
-| 手机，iPhone / iPad | Stash | 维护者私下发送 `stash-private.yaml`，规则仍走 GitHub |
+| 手机，iPhone / iPad | Stash | 订阅公开配置 `ios/public.yaml`，然后在 App 里修改示例节点 |
 
 规则文件可以公开放在 GitHub。节点地址、密码、订阅 token 不会写到 GitHub
 里。
@@ -17,7 +17,7 @@
 1. 订阅这个公共规则链接。
 2. 把自己的节点信息放到本机。
 
-手机端使用时只导入维护者私下发来的私有配置文件。
+手机端使用时先订阅公开配置，再把里面的示例节点改成真实节点。
 
 ## 电脑端：Clash Verge Rev
 
@@ -228,12 +228,12 @@ https://www.google.com
 
 手机端推荐使用 Stash。
 
-手机端不建议让新手自己处理 override。更稳的方式是：维护者先做一份带节点
-的私有 Stash 配置文件，然后通过微信、邮件、AirDrop 或 iCloud 私下发给
-对方。
+手机端直接订阅公开配置。公开配置里只有一个示例节点，订阅后把这个示例节点
+改成维护者私下告诉你的真实节点即可。
 
-这份私有配置里会包含节点信息，但规则仍然引用 GitHub 上的公开规则文件。
-所以维护者以后修改 `ios/rules/` 后，手机端刷新配置即可拿到新规则。
+注意：改完节点后，不要随手刷新 Stash 里的主配置，否则可能会把你的节点改
+回示例值。规则文件本身是远程规则，维护者更新 `ios/rules/` 后，Stash 会按
+配置里的间隔刷新规则。
 
 ### 一、下载安装 Stash
 
@@ -245,24 +245,20 @@ Stash
 
 Stash 是付费 App。安装完成后先打开一次。
 
-### 二、向维护者索取私有配置文件
+### 二、导入公共规则配置
 
-向维护者索取一份私有配置文件，文件名可以叫：
+向维护者索取公共订阅链接，或者直接使用下面这个链接：
 
 ```text
-stash-private.yaml
+https://cdn.jsdelivr.net/gh/wintion/proxy-rules@main/ios/public.yaml
 ```
-
-这个文件里有你的节点信息，不要发到群里，也不要上传到 GitHub。
-
-### 三、导入私有配置文件
 
 打开 Stash：
 
 1. 进入 `Profiles` 或 `配置`。
 2. 点击 `+`。
-3. 选择导入本地文件。
-4. 选择维护者私下发给你的 `stash-private.yaml`。
+3. 选择从 URL 下载配置。
+4. 粘贴上面的订阅链接。
 5. 名字可以填：
 
 ```text
@@ -271,8 +267,27 @@ Proxy Rules iOS
 
 6. 保存，并选中这份配置。
 
-如果维护者给你的不是文件，而是一个私有下载链接，也可以选择从 URL 下载
-配置，然后粘贴维护者给你的私有链接。
+如果 CDN 链接无法导入，可以改用这个备用链接：
+
+```text
+https://raw.githubusercontent.com/wintion/proxy-rules/main/ios/public.yaml
+```
+
+### 三、修改示例节点
+
+公共配置导入后，里面会有一个示例节点 `My-Trojan`。
+
+你需要把这个示例节点改成维护者私下告诉你的真实节点信息：
+
+| 字段 | 填什么 |
+| --- | --- |
+| `name` | 节点名字，可以不改 |
+| `server` | 服务器地址 |
+| `port` | 端口 |
+| `password` | 密码 |
+| `sni` | 如果维护者没特别说明，就留空 |
+
+不要把真实节点信息发到群里，也不要上传到 GitHub。
 
 ### 四、选择节点
 
@@ -288,8 +303,8 @@ Proxy Rules iOS
 
 一般只需要把 `Proxy` 设置成 `Auto`。
 
-如果 `Proxy` 里看不到任何节点，通常是导入的私有配置文件不对，或者维护者
-给你的文件里没有节点。
+如果 `Proxy` 里只看到示例节点，或者测试不通，通常是第三步还没有把示例
+节点改成真实节点。
 
 ### 五、开启 VPN
 
@@ -317,12 +332,13 @@ https://www.google.com
 
 ### 七、以后怎么更新手机规则
 
-维护者更新 GitHub 规则后，你不需要重新导入节点文件。
+维护者更新 GitHub 规则后，你不需要重新填写节点。
 
-只需要在 Stash 的 `Profiles` / `配置` 页面刷新 `Proxy Rules iOS`。
+Stash 会按照配置里的间隔刷新远程规则。如果你手动刷新了主配置，示例节点
+可能会覆盖你已经改好的真实节点；这种情况下重新把节点改一次即可。
 
-如果维护者更换了你的节点密码或服务器地址，会私下发你新的
-`stash-private.yaml`。你只需要重新导入这份私有配置文件。
+如果维护者更换了你的节点密码或服务器地址，会私下告诉你新的节点信息。你
+只需要回到 Stash 里修改 `My-Trojan` 节点。
 
 ## 给维护者
 
@@ -337,18 +353,11 @@ https://www.google.com
 
 | 文件 | 用途 |
 | --- | --- |
-| `ios/stash-private.example.yaml` | 手机端私有配置模板，不填真实节点 |
+| `ios/public.yaml` | 手机端 Stash 公共订阅配置，只放示例节点 |
 | `ios/rules/custom-direct.yaml` | 手机端强制直连的域名 |
 | `ios/rules/custom-proxy.yaml` | 手机端强制代理的域名 |
 
-给朋友生成手机端配置时，复制模板：
-
-```sh
-cp ios/stash-private.example.yaml ios/stash-private.yaml
-```
-
-然后把 `ios/stash-private.yaml` 里的示例节点改成真实节点，私下发给对方。
-这个真实文件已被 `.gitignore` 忽略，不要强制提交。
+不要把真实手机端节点写进 `ios/public.yaml`，只保留示例节点。
 
 规则文件格式：
 
@@ -361,11 +370,11 @@ payload:
 `+.example.com` 表示主域名和所有子域名都匹配。`exact.example.com` 只匹配
 这个完整域名。
 
-本仓库不要提交真实节点信息。`.gitignore` 已经忽略了本地私密配置、
-`proxy_providers/*.yaml` 和手机端真实私有配置。
+本仓库不要提交真实节点信息。`.gitignore` 已经忽略了本地私密配置和
+`proxy_providers/*.yaml`。
 
 基础 YAML 校验：
 
 ```sh
-ruby -e 'require "yaml"; Dir["trojan/public.yaml", "ios/stash-private.example.yaml", "trojan/rules/*.yaml", "ios/rules/*.yaml"].each { |f| YAML.load_file(f); puts "OK #{f}" }'
+ruby -e 'require "yaml"; Dir["trojan/public.yaml", "ios/public.yaml", "trojan/rules/*.yaml", "ios/rules/*.yaml"].each { |f| YAML.load_file(f); puts "OK #{f}" }'
 ```

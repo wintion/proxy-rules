@@ -1,5 +1,5 @@
-# Private Stash profile template for iPhone and iPad.
-# Copy this file, fill in real proxy nodes, and send it privately.
+# Public Stash profile for iPhone and iPad.
+# Subscribe to this file, then replace the example proxy node inside Stash.
 # Do not commit real proxy credentials to GitHub.
 
 mode: rule
