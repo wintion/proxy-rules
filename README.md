@@ -4,18 +4,20 @@
 
 目前分两套使用方式：
 
-| 设备 | 推荐客户端 | 公共配置 |
+| 设备 | 推荐客户端 | 配置方式 |
 | --- | --- | --- |
-| 电脑，macOS / Windows | Clash Verge Rev | `trojan/public.yaml` |
-| 手机，iPhone / iPad | Stash | `ios/stash.yaml` |
+| 电脑，macOS / Windows | Clash Verge Rev | 订阅公开配置 `trojan/public.yaml`，本机放节点文件 |
+| 手机，iPhone / iPad | Stash | 维护者私下发送 `stash-private.yaml`，规则仍走 GitHub |
 
-公共配置可以公开放在 GitHub。节点地址、密码、订阅 token 不会写到 GitHub
+规则文件可以公开放在 GitHub。节点地址、密码、订阅 token 不会写到 GitHub
 里。
 
-使用时只需要做两件事：
+电脑端使用时只需要做两件事：
 
 1. 订阅这个公共规则链接。
-2. 把自己的节点信息放到本机或手机 App 里。
+2. 把自己的节点信息放到本机。
+
+手机端使用时只导入维护者私下发来的私有配置文件。
 
 ## 电脑端：Clash Verge Rev
 
@@ -224,11 +226,14 @@ https://www.google.com
 
 ## 手机端：iPhone / iPad 使用 Stash
 
-手机端推荐使用 Stash。手机端和电脑端规则分开维护，手机端公共配置是：
+手机端推荐使用 Stash。
 
-```text
-https://cdn.jsdelivr.net/gh/wintion/proxy-rules@main/ios/stash.yaml
-```
+手机端不建议让新手自己处理 override。更稳的方式是：维护者先做一份带节点
+的私有 Stash 配置文件，然后通过微信、邮件、AirDrop 或 iCloud 私下发给
+对方。
+
+这份私有配置里会包含节点信息，但规则仍然引用 GitHub 上的公开规则文件。
+所以维护者以后修改 `ios/rules/` 后，手机端刷新配置即可拿到新规则。
 
 ### 一、下载安装 Stash
 
@@ -240,45 +245,24 @@ Stash
 
 Stash 是付费 App。安装完成后先打开一次。
 
-### 二、准备节点 Override
+### 二、向维护者索取私有配置文件
 
-手机端不要把节点写进 GitHub。维护者会私下发给你一份 Stash override。
-节点文件只需要从 `proxies:` 开始，通常长这样：
-
-```yaml
-proxies:
-  - name: My-Trojan
-    type: trojan
-    server: example.com
-    port: 443
-    password: change-me
-    sni:
-    skip-cert-verify: false
-    udp: true
-```
-
-你拿到真实内容后，可以把它保存成一个文件：
+向维护者索取一份私有配置文件，文件名可以叫：
 
 ```text
-personal-node.stoverride
+stash-private.yaml
 ```
 
-如果不会自己保存文件，也可以让维护者直接把这个 `.stoverride` 文件通过
-微信、邮件、AirDrop 或 iCloud 发给你。
+这个文件里有你的节点信息，不要发到群里，也不要上传到 GitHub。
 
-### 三、导入公共规则配置
+### 三、导入私有配置文件
 
 打开 Stash：
 
 1. 进入 `Profiles` 或 `配置`。
 2. 点击 `+`。
-3. 选择从 URL 下载配置。
-4. 粘贴下面这个链接：
-
-```text
-https://cdn.jsdelivr.net/gh/wintion/proxy-rules@main/ios/stash.yaml
-```
-
+3. 选择导入本地文件。
+4. 选择维护者私下发给你的 `stash-private.yaml`。
 5. 名字可以填：
 
 ```text
@@ -287,25 +271,10 @@ Proxy Rules iOS
 
 6. 保存，并选中这份配置。
 
-如果 CDN 链接无法导入，可以改用这个备用链接：
+如果维护者给你的不是文件，而是一个私有下载链接，也可以选择从 URL 下载
+配置，然后粘贴维护者给你的私有链接。
 
-```text
-https://raw.githubusercontent.com/wintion/proxy-rules/main/ios/stash.yaml
-```
-
-### 四、导入节点 Override
-
-打开 Stash：
-
-1. 进入 `Override` 或 `覆写` 页面。
-2. 点击 `+`。
-3. 选择导入本地文件，或从剪贴板新建。
-4. 导入维护者私下发给你的 `personal-node.stoverride`。
-5. 确认这个 override 已经开启。
-
-这一步完成后，公共规则配置会自动使用 override 里的节点。
-
-### 五、选择节点
+### 四、选择节点
 
 进入 Stash 的 `Proxy` 或 `代理` 页面。
 
@@ -319,17 +288,17 @@ https://raw.githubusercontent.com/wintion/proxy-rules/main/ios/stash.yaml
 
 一般只需要把 `Proxy` 设置成 `Auto`。
 
-如果 `Proxy` 里看不到任何节点，通常是 override 没导入、没开启，或者节点
-内容没有保存正确。
+如果 `Proxy` 里看不到任何节点，通常是导入的私有配置文件不对，或者维护者
+给你的文件里没有节点。
 
-### 六、开启 VPN
+### 五、开启 VPN
 
 回到 Stash 首页，打开连接开关。
 
 第一次开启时，iPhone 会提示添加 VPN 配置。选择允许，并输入锁屏密码或
 Face ID。
 
-### 七、测试是否成功
+### 六、测试是否成功
 
 打开 Safari 测试：
 
@@ -343,18 +312,17 @@ https://www.google.com
 
 1. Stash 是否已经开启连接。
 2. 当前 profile 是否选中了 `Proxy Rules iOS`。
-3. `personal-node.stoverride` 是否已经导入并开启。
-4. `Proxy` 分组里是否有节点，并且不是 `DIRECT`。
-5. 手机是否正在使用一个能正常联网的 Wi-Fi 或蜂窝网络。
+3. `Proxy` 分组里是否有节点，并且不是 `DIRECT`。
+4. 手机是否正在使用一个能正常联网的 Wi-Fi 或蜂窝网络。
 
-### 八、以后怎么更新手机规则
+### 七、以后怎么更新手机规则
 
-维护者更新 GitHub 规则后，你不需要重新导入节点。
+维护者更新 GitHub 规则后，你不需要重新导入节点文件。
 
 只需要在 Stash 的 `Profiles` / `配置` 页面刷新 `Proxy Rules iOS`。
 
 如果维护者更换了你的节点密码或服务器地址，会私下发你新的
-`personal-node.stoverride`。你只需要重新导入并开启新的 override。
+`stash-private.yaml`。你只需要重新导入这份私有配置文件。
 
 ## 给维护者
 
@@ -369,8 +337,18 @@ https://www.google.com
 
 | 文件 | 用途 |
 | --- | --- |
+| `ios/stash-private.example.yaml` | 手机端私有配置模板，不填真实节点 |
 | `ios/rules/custom-direct.yaml` | 手机端强制直连的域名 |
 | `ios/rules/custom-proxy.yaml` | 手机端强制代理的域名 |
+
+给朋友生成手机端配置时，复制模板：
+
+```sh
+cp ios/stash-private.example.yaml ios/stash-private.yaml
+```
+
+然后把 `ios/stash-private.yaml` 里的示例节点改成真实节点，私下发给对方。
+这个真实文件已被 `.gitignore` 忽略，不要强制提交。
 
 规则文件格式：
 
@@ -383,11 +361,11 @@ payload:
 `+.example.com` 表示主域名和所有子域名都匹配。`exact.example.com` 只匹配
 这个完整域名。
 
-本仓库不要提交真实节点信息。`.gitignore` 已经忽略了本地私密配置和
-`proxy_providers/*.yaml`，手机端真实 override 也不要提交。
+本仓库不要提交真实节点信息。`.gitignore` 已经忽略了本地私密配置、
+`proxy_providers/*.yaml` 和手机端真实私有配置。
 
 基础 YAML 校验：
 
 ```sh
-ruby -e 'require "yaml"; Dir["trojan/public.yaml", "ios/stash.yaml", "trojan/rules/*.yaml", "ios/rules/*.yaml"].each { |f| YAML.load_file(f); puts "OK #{f}" }'
+ruby -e 'require "yaml"; Dir["trojan/public.yaml", "ios/stash-private.example.yaml", "trojan/rules/*.yaml", "ios/rules/*.yaml"].each { |f| YAML.load_file(f); puts "OK #{f}" }'
 ```

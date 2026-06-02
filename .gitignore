@@ -13,10 +13,11 @@ trojan/proxy_providers/*.yaml
 # Runtime-downloaded rule providers.
 trojan/ruleset/
 
-# Real Stash override files can contain private proxy credentials.
-ios/personal-node.stoverride
-ios/*.local.stoverride
-ios/*.private.stoverride
+# Real Stash profile/override files can contain private proxy credentials.
+ios/stash-private.yaml
+ios/*.local.yaml
+ios/*.private.yaml
+ios/*.stoverride
 
 # Runtime-downloaded iOS rule providers.
 ios/ruleset/
