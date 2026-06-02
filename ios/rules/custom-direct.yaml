@@ -1,0 +1,36 @@
+payload:
+  # Personal sites and services
+  - '+.chinastarterguide.com'
+  - '+.pages.dev'
+  - '+.getaicore.com'
+  - '+.larksuite.com'
+  - '+.paypal.com'
+  - '+.bugsnag.com'
+  - '+.jichuangip.com'
+  - '+.wanvia.com'
+
+  # Domestic AI services
+  - '+.solarax.world'
+  - '+.dashscope.aliyuncs.com'
+  - '+.ark.cn-beijing.volces.com'
+  - '+.api.moonshot.cn'
+  - '+.api.deepseek.com'
+  - '+.open.bigmodel.cn'
+  - '+.api.minimax.io'
+  - '+.gpt.auto-code.net'
+  - '+.rayplus.site'
+  - '+.claudechn.com'
+  - '+.yicaro.com'
+
+  # Taobao / Alibaba
+  - '+.taobao.com'
+  - '+.tmall.com'
+  - '+.tmall.hk'
+  - '+.alicdn.com'
+  - '+.alibaba.com'
+  - '+.alipay.com'
+  - '+.alipayobjects.com'
+  - '+.aliimg.com'
+  - '+.aliyun.com'
+  - '+.1688.com'
+  - '+.ant.design'
