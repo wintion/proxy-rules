@@ -270,7 +270,7 @@ Proxy Rules iOS
 如果 CDN 链接无法导入，可以改用这个备用链接：
 
 ```text
-https://raw.githubusercontent.com/wintion/proxy-rules/main/ios/public.yaml
+https://raw.githubusercontent.com/wintion/proxy-rules/refs/heads/main/ios/public.yaml
 ```
 
 ### 三、修改示例节点
