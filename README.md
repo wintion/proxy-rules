@@ -6,7 +6,7 @@
 
 | 设备 | 推荐客户端 | 配置方式 |
 | --- | --- | --- |
-| 电脑，macOS / Windows | Clash Verge Rev | 订阅公开配置 `trojan/public.yaml`，本机放节点文件 |
+| 电脑，macOS / Windows | Clash Verge Rev | 订阅公开配置 `pc/public.yaml`，本机放节点文件 |
 | 手机，iPhone / iPad | Stash | 订阅公开配置 `ios/public.yaml`，在 App 里修改示例节点 |
 
 规则文件可以公开放在 GitHub。节点地址、密码、订阅 token 不会写到 GitHub
@@ -148,7 +148,7 @@ personal.yaml
 4. 粘贴下面这个订阅链接：
 
 ```text
-https://cdn.jsdelivr.net/gh/wintion/proxy-rules@main/trojan/public.yaml
+https://cdn.jsdelivr.net/gh/wintion/proxy-rules@main/pc/public.yaml
 ```
 
 5. 名字可以填：
@@ -163,7 +163,7 @@ Proxy Rules
 如果 CDN 链接无法导入，可以改用这个备用链接：
 
 ```text
-https://raw.githubusercontent.com/wintion/proxy-rules/main/trojan/public.yaml
+https://raw.githubusercontent.com/wintion/proxy-rules/main/pc/public.yaml
 ```
 
 ### 六、打开代理
@@ -357,8 +357,8 @@ Stash 会按照配置里的 `interval` 刷新远程规则集，也就是
 
 | 文件 | 用途 |
 | --- | --- |
-| `trojan/rules/custom-direct.yaml` | 强制直连的域名 |
-| `trojan/rules/custom-proxy.yaml` | 强制代理的域名 |
+| `pc/rules/custom-direct.yaml` | 强制直连的域名 |
+| `pc/rules/custom-proxy.yaml` | 强制代理的域名 |
 
 手机端日常维护：
 
@@ -387,5 +387,5 @@ payload:
 基础 YAML 校验：
 
 ```sh
-ruby -e 'require "yaml"; Dir["trojan/public.yaml", "ios/public.yaml", "trojan/rules/*.yaml", "ios/rules/*.yaml"].each { |f| YAML.load_file(f); puts "OK #{f}" }'
+ruby -e 'require "yaml"; Dir["pc/public.yaml", "ios/public.yaml", "pc/rules/*.yaml", "ios/rules/*.yaml"].each { |f| YAML.load_file(f); puts "OK #{f}" }'
 ```
