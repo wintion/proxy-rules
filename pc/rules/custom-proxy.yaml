@@ -13,6 +13,7 @@ payload:
   - '+.perplexity.ai'
   - '+.poe.com'
   - '+.cursor.sh'
+  - '+.yicaro.com'
 
   # GitHub
   - '+.github.com'
