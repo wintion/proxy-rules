@@ -285,19 +285,12 @@ https://raw.githubusercontent.com/wintion/proxy-rules/refs/heads/main/ios/public
 3. 找到 `proxies` 下面的示例节点 `My-Trojan`。
 4. 把维护者私下告诉你的真实信息填进去。
 
-一般只需要改这两个字段：
+<font color="red">只允许修改 `server` 和 `password`，任何其他参数不要随意改动。</font>
 
 | 字段 | 填什么 |
 | --- | --- |
 | `server` | 服务器地址 |
 | `password` | 密码 |
-
-如果维护者同时给了端口或 SNI，再一起修改：
-
-| 字段 | 填什么 |
-| --- | --- |
-| `port` | 端口，没有特别说明就保持 `443` |
-| `sni` | 如果维护者没特别说明，就留空 |
 
 保存后回到配置列表，继续使用这份配置即可。
 
