@@ -282,8 +282,16 @@ https://raw.githubusercontent.com/wintion/proxy-rules/refs/heads/main/ios/public
 
 1. 确认 `配置列表` 里选中了刚下载的配置。
 2. 点下面 `编辑` 区域里的 `编辑`。
-3. 找到 `proxies` 下面的示例节点 `My-Trojan`。
-4. 把维护者私下告诉你的真实信息填进去。
+3. 如果弹出提示“订阅的配置可能会被自动更新覆盖”，选择 `创建副本`。
+4. 不要点 `继续` 直接编辑原始订阅配置。
+5. 在新创建的副本里，找到 `proxies` 下面的示例节点 `My-Trojan`。
+6. 把维护者私下告诉你的真实信息填进去。
+
+创建副本后，配置名可能显示为：
+
+```text
+public - copy
+```
 
 <font color="red">只允许修改 `server` 和 `password`，任何其他参数不要随意改动。</font>
 
@@ -292,7 +300,7 @@ https://raw.githubusercontent.com/wintion/proxy-rules/refs/heads/main/ios/public
 | `server` | 服务器地址 |
 | `password` | 密码 |
 
-保存后回到配置列表，继续使用这份配置即可。
+保存后回到配置列表，确认选中的是这个副本，而不是原始 `public` 配置。
 
 不要把真实节点信息发到群里，也不要上传到 GitHub。
 
