@@ -239,6 +239,9 @@ https://www.google.com
 
 ### 一、下载安装 Stash
 
+Stash 需要在美区等非中国区 Apple App Store 下载。如果当前 App Store 搜不到，
+请切换到美国区等非中国区 Apple ID 后再搜索安装。
+
 在 App Store 搜索并安装：
 
 ```text
@@ -328,6 +331,7 @@ https://www.google.com
 3. `My-Trojan` 是否已经改成真实节点。
 4. `server` 和 `password` 是否填错。
 5. 手机是否正在使用一个能正常联网的 Wi-Fi 或蜂窝网络。
+6. 仍然不行的话，重启手机后再打开 Stash 试试。
 
 ### 六、以后怎么更新手机规则
 
